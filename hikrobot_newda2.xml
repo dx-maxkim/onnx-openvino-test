@@ -1,0 +1,384 @@
+<?xml version="1.0"?>
+<net name="main_graph" version="11">
+	<layers>
+		<layer id="4" name="grid" type="Parameter" version="opset1">
+			<data shape="4,100,13,2" element_type="f32" />
+			<output>
+				<port id="0" precision="FP32" names="grid">
+					<dim>4</dim>
+					<dim>100</dim>
+					<dim>13</dim>
+					<dim>2</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="3" name="onnx::Transpose_1" type="Parameter" version="opset1">
+			<data shape="4,128,176,256" element_type="f32" />
+			<output>
+				<port id="0" precision="FP32" names="onnx::Transpose_1">
+					<dim>4</dim>
+					<dim>128</dim>
+					<dim>176</dim>
+					<dim>256</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="2" name="onnx::Transpose_2" type="Parameter" version="opset1">
+			<data shape="4,64,88,256" element_type="f32" />
+			<output>
+				<port id="0" precision="FP32" names="onnx::Transpose_2">
+					<dim>4</dim>
+					<dim>64</dim>
+					<dim>88</dim>
+					<dim>256</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="1" name="onnx::Transpose_3" type="Parameter" version="opset1">
+			<data shape="4,32,44,256" element_type="f32" />
+			<output>
+				<port id="0" precision="FP32" names="onnx::Transpose_3">
+					<dim>4</dim>
+					<dim>32</dim>
+					<dim>44</dim>
+					<dim>256</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="0" name="onnx::Transpose_4" type="Parameter" version="opset1">
+			<data shape="4,16,22,256" element_type="f32" />
+			<output>
+				<port id="0" precision="FP32" names="onnx::Transpose_4">
+					<dim>4</dim>
+					<dim>16</dim>
+					<dim>22</dim>
+					<dim>256</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="5" name="Constant_6" type="Const" version="opset1">
+			<data element_type="i64" shape="4" offset="0" size="32" />
+			<output>
+				<port id="0" precision="I64">
+					<dim>4</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="6" name="/Transpose" type="Transpose" version="opset1">
+			<input>
+				<port id="0" precision="FP32">
+					<dim>4</dim>
+					<dim>128</dim>
+					<dim>176</dim>
+					<dim>256</dim>
+				</port>
+				<port id="1" precision="I64">
+					<dim>4</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32" names="/Transpose_output_0">
+					<dim>4</dim>
+					<dim>256</dim>
+					<dim>128</dim>
+					<dim>176</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="7" name="/GridSample" type="GridSample" version="opset9">
+			<data align_corners="false" mode="bilinear" padding_mode="zeros" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>4</dim>
+					<dim>256</dim>
+					<dim>128</dim>
+					<dim>176</dim>
+				</port>
+				<port id="1" precision="FP32">
+					<dim>4</dim>
+					<dim>100</dim>
+					<dim>13</dim>
+					<dim>2</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32" names="/GridSample_output_0">
+					<dim>4</dim>
+					<dim>256</dim>
+					<dim>100</dim>
+					<dim>13</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="8" name="Constant_8" type="Const" version="opset1">
+			<data element_type="i64" shape="4" offset="0" size="32" />
+			<output>
+				<port id="0" precision="I64">
+					<dim>4</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="9" name="/Transpose_1" type="Transpose" version="opset1">
+			<input>
+				<port id="0" precision="FP32">
+					<dim>4</dim>
+					<dim>64</dim>
+					<dim>88</dim>
+					<dim>256</dim>
+				</port>
+				<port id="1" precision="I64">
+					<dim>4</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32" names="/Transpose_1_output_0">
+					<dim>4</dim>
+					<dim>256</dim>
+					<dim>64</dim>
+					<dim>88</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="10" name="/GridSample_1" type="GridSample" version="opset9">
+			<data align_corners="false" mode="bilinear" padding_mode="zeros" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>4</dim>
+					<dim>256</dim>
+					<dim>64</dim>
+					<dim>88</dim>
+				</port>
+				<port id="1" precision="FP32">
+					<dim>4</dim>
+					<dim>100</dim>
+					<dim>13</dim>
+					<dim>2</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32" names="/GridSample_1_output_0">
+					<dim>4</dim>
+					<dim>256</dim>
+					<dim>100</dim>
+					<dim>13</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="11" name="Constant_10" type="Const" version="opset1">
+			<data element_type="i64" shape="4" offset="0" size="32" />
+			<output>
+				<port id="0" precision="I64">
+					<dim>4</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="12" name="/Transpose_2" type="Transpose" version="opset1">
+			<input>
+				<port id="0" precision="FP32">
+					<dim>4</dim>
+					<dim>32</dim>
+					<dim>44</dim>
+					<dim>256</dim>
+				</port>
+				<port id="1" precision="I64">
+					<dim>4</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32" names="/Transpose_2_output_0">
+					<dim>4</dim>
+					<dim>256</dim>
+					<dim>32</dim>
+					<dim>44</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="13" name="/GridSample_2" type="GridSample" version="opset9">
+			<data align_corners="false" mode="bilinear" padding_mode="zeros" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>4</dim>
+					<dim>256</dim>
+					<dim>32</dim>
+					<dim>44</dim>
+				</port>
+				<port id="1" precision="FP32">
+					<dim>4</dim>
+					<dim>100</dim>
+					<dim>13</dim>
+					<dim>2</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32" names="/GridSample_2_output_0">
+					<dim>4</dim>
+					<dim>256</dim>
+					<dim>100</dim>
+					<dim>13</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="14" name="Constant_12" type="Const" version="opset1">
+			<data element_type="i64" shape="4" offset="0" size="32" />
+			<output>
+				<port id="0" precision="I64">
+					<dim>4</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="15" name="/Transpose_3" type="Transpose" version="opset1">
+			<input>
+				<port id="0" precision="FP32">
+					<dim>4</dim>
+					<dim>16</dim>
+					<dim>22</dim>
+					<dim>256</dim>
+				</port>
+				<port id="1" precision="I64">
+					<dim>4</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32" names="/Transpose_3_output_0">
+					<dim>4</dim>
+					<dim>256</dim>
+					<dim>16</dim>
+					<dim>22</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="16" name="/GridSample_3" type="GridSample" version="opset9">
+			<data align_corners="false" mode="bilinear" padding_mode="zeros" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>4</dim>
+					<dim>256</dim>
+					<dim>16</dim>
+					<dim>22</dim>
+				</port>
+				<port id="1" precision="FP32">
+					<dim>4</dim>
+					<dim>100</dim>
+					<dim>13</dim>
+					<dim>2</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32" names="/GridSample_3_output_0">
+					<dim>4</dim>
+					<dim>256</dim>
+					<dim>100</dim>
+					<dim>13</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="17" name="/Concat" type="Concat" version="opset1">
+			<data axis="0" />
+			<input>
+				<port id="0" precision="FP32">
+					<dim>4</dim>
+					<dim>256</dim>
+					<dim>100</dim>
+					<dim>13</dim>
+				</port>
+				<port id="1" precision="FP32">
+					<dim>4</dim>
+					<dim>256</dim>
+					<dim>100</dim>
+					<dim>13</dim>
+				</port>
+				<port id="2" precision="FP32">
+					<dim>4</dim>
+					<dim>256</dim>
+					<dim>100</dim>
+					<dim>13</dim>
+				</port>
+				<port id="3" precision="FP32">
+					<dim>4</dim>
+					<dim>256</dim>
+					<dim>100</dim>
+					<dim>13</dim>
+				</port>
+			</input>
+			<output>
+				<port id="4" precision="FP32" names="/Concat_output_0">
+					<dim>16</dim>
+					<dim>256</dim>
+					<dim>100</dim>
+					<dim>13</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="18" name="Constant_19" type="Const" version="opset1">
+			<data element_type="i64" shape="4" offset="32" size="32" />
+			<output>
+				<port id="0" precision="I64">
+					<dim>4</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="19" name="14" type="Transpose" version="opset1">
+			<input>
+				<port id="0" precision="FP32">
+					<dim>16</dim>
+					<dim>256</dim>
+					<dim>100</dim>
+					<dim>13</dim>
+				</port>
+				<port id="1" precision="I64">
+					<dim>4</dim>
+				</port>
+			</input>
+			<output>
+				<port id="2" precision="FP32" names="14">
+					<dim>256</dim>
+					<dim>100</dim>
+					<dim>13</dim>
+					<dim>16</dim>
+				</port>
+			</output>
+		</layer>
+		<layer id="20" name="14/sink_port_0" type="Result" version="opset1" output_names="14">
+			<input>
+				<port id="0" precision="FP32">
+					<dim>256</dim>
+					<dim>100</dim>
+					<dim>13</dim>
+					<dim>16</dim>
+				</port>
+			</input>
+		</layer>
+	</layers>
+	<edges>
+		<edge from-layer="0" from-port="0" to-layer="15" to-port="0" />
+		<edge from-layer="1" from-port="0" to-layer="12" to-port="0" />
+		<edge from-layer="2" from-port="0" to-layer="9" to-port="0" />
+		<edge from-layer="3" from-port="0" to-layer="6" to-port="0" />
+		<edge from-layer="4" from-port="0" to-layer="7" to-port="1" />
+		<edge from-layer="4" from-port="0" to-layer="10" to-port="1" />
+		<edge from-layer="4" from-port="0" to-layer="13" to-port="1" />
+		<edge from-layer="4" from-port="0" to-layer="16" to-port="1" />
+		<edge from-layer="5" from-port="0" to-layer="6" to-port="1" />
+		<edge from-layer="6" from-port="2" to-layer="7" to-port="0" />
+		<edge from-layer="7" from-port="2" to-layer="17" to-port="0" />
+		<edge from-layer="8" from-port="0" to-layer="9" to-port="1" />
+		<edge from-layer="9" from-port="2" to-layer="10" to-port="0" />
+		<edge from-layer="10" from-port="2" to-layer="17" to-port="1" />
+		<edge from-layer="11" from-port="0" to-layer="12" to-port="1" />
+		<edge from-layer="12" from-port="2" to-layer="13" to-port="0" />
+		<edge from-layer="13" from-port="2" to-layer="17" to-port="2" />
+		<edge from-layer="14" from-port="0" to-layer="15" to-port="1" />
+		<edge from-layer="15" from-port="2" to-layer="16" to-port="0" />
+		<edge from-layer="16" from-port="2" to-layer="17" to-port="3" />
+		<edge from-layer="17" from-port="4" to-layer="19" to-port="0" />
+		<edge from-layer="18" from-port="0" to-layer="19" to-port="1" />
+		<edge from-layer="19" from-port="2" to-layer="20" to-port="0" />
+	</edges>
+	<rt_info>
+		<Runtime_version value="2025.2.0-19140-c01cd93e24d-releases/2025/2" />
+		<conversion_parameters>
+			<is_python_object value="False" />
+			<output_model value="hikrobot_newda2.xml" />
+		</conversion_parameters>
+	</rt_info>
+</net>
