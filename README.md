@@ -1,24 +1,40 @@
-## install OpenVINO with APT on x86_64 Ubuntu system 
-- Reference: https://docs.openvino.ai/2025/get-started/install-openvino/install-openvino-apt.html
-```
-wget https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB
-sudo gpg --output /etc/apt/trusted.gpg.d/intel.gpg --dearmor GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB
-sudo apt-get install gnupg
-# for Ubuntu 24.04
-echo "deb https://apt.repos.intel.com/openvino ubuntu24 main" | sudo tee /etc/apt/sources.list.d/intel-openvino.list
-# for Ubutnu 22.04
-# echo "deb https://apt.repos.intel.com/openvino ubuntu22 main" | sudo tee /etc/apt/sources.list.d/intel-openvino.list
-# for Ubutnu 20.04
-# echo "deb https://apt.repos.intel.com/openvino ubuntu20 main" | sudo tee /etc/apt/sources.list.d/intel-openvino.list
-sudo apt update
-# apt-cache search openvino
-sudo apt install openvino
-/usr/share/openvino/samples/cpp/build_samples.sh
-```
+# Overview
+This repository provides working examples that demonstrate how to use OpenVINO as an execution backend in ONNX Runtime for both Python and C++ applications.
 
-## ONNX install for OpenVINO
+There are mainly two parts:
+ - Python example
+ - C++ example
+
+## OpenVINO + ONNX Runtime in Python
+Follow the steps below to install and run the Python examples.
+
+  - Installation:
+    ```
+    python3 -m venv .venv
+    source .venv/bin/activate
+    pip install -U pip
+    pip install onnxruntime-openvino
+    ```
+  - Usage:
+    ```
+    # Legacy ONNX-Runtime API
+    python3 test_onnx_only.py
+
+    # ONNX-Runtime with OpenVINO
+    python3 test_openvino_only.py
+
+    # Compare ONNX-Runtime with/without OpenVINO
+    python3 test_both_onnx_openvino.py
+
+    # Run based on OpenVINO API without ONNX-Runtime
+    python3 test_openvino_api.py
+    ```
+
+
+## OpenVINO + ONNX Runtime in C++
+
+TBD...
+
+- Reference: https://github.com/intel/onnxruntime
+- Reference: https://docs.openvino.ai/2025/get-started/install-openvino/install-openvino-archive-linux.html
 - Reference: https://onnxruntime.ai/docs/execution-providers/OpenVINO-ExecutionProvider.html
-```
-pip install --upgrade onnxruntime-openvino
-
-```
